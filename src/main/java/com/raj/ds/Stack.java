@@ -3,35 +3,43 @@
  */
 package com.raj.ds;
 
+import java.util.ArrayList;
+
 /**
  * @author rajeev
  *
  */
-public class Stack {
+public class Stack<T> {
 	private int maxSize;
 	private int top ;
-	private int[] arr;
-	
-	public Stack(int size) {
-		this.maxSize=size;
+	private ArrayList<T> arr;
+
+	public Stack() {
 		this.top=-1;
-		this.arr = new int[size];
+		this.arr = new ArrayList<T>();
 	}
-	
-	public void push(int ele) throws Exception {
-		if(isStackFull()) {
-			throw new Exception("Stack is full maxSize:"+maxSize );
-		}
+
+	public void push(T ele)  {
 		top++;
-		arr[top]=ele;
-		
+		arr.add(top, ele);
+	}
+
+	public T pop() {
+		T data =arr.get(top);
+		arr.remove(top);
+		top--;
+		return data;
 	}
 	
-	public long pop() {
-		return -1;
+	public T peek(){
+		System.out.println(top);
+		return top==-1?(T)null:arr.get(top);
 	}
 	public boolean isStackFull() {
 		return top ==maxSize-1; 
+	}
+	public boolean isStackEmpty() {
+		return top ==-1; 
 	}
 
 }
