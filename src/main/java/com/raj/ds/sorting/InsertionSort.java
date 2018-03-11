@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.raj.ds;
+package com.raj.ds.sorting;
 
 /**
  * @author rajeev

@@ -1,4 +1,4 @@
-package com.raj.ds;
+package com.raj.ds.sorting;
 
 import java.util.Collections;
 import java.util.LinkedList;
