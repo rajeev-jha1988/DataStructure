@@ -5,7 +5,6 @@ package com.raj.ds.sorting;
 
 import java.util.Arrays;
 
-import com.sun.javafx.collections.SortableList;
 
 /**
  * @author rajeev
@@ -18,7 +17,7 @@ public class MergeSort {
 	 */
 	
 	
-	public static void mergesort(int a[],int la[],int ra[]) {
+	public static void merge(int a[],int la[],int ra[]) {
 		int i=0,j=0,k=0;
 
 		int nl=la.length;
@@ -50,33 +49,47 @@ public class MergeSort {
 		}*/
 	}
 	
+	public static void mergesort(int arr[]) {
+		if(arr.length==1) 
+			return ;
+		
+		int median = arr.length/2+arr.length%2;
+		int left[]= new int[median];
+		int right[]= new int[arr.length-median];
+		
+		split(arr, left, right);
+
+		mergesort(left);
+		mergesort(right);
+		
+		merge(arr, left, right);
+		
+		
+	}
 	
-	static void  sort(int arr[], int l, int r)
-    {
-        if (l < r)
-        {
-            // Find the middle point
-            int m = (l+r)/2;
- 
-            // Sort first and second halves
-            sort(arr, l, m);
-            sort(arr , m+1, r);
- 
-            // Merge the sorted halves
-            mergesort(arr, l, m, r);
-        }
-    }
+	public static void split(int a[],int left[],int right[]) {
+		if(a.length==1)
+			return;
+		int median= left.length;
+		int j=0;
+		for (int i = 0; i < a.length; i++) {
+			if(i<median) {
+				left[i]=a[i];
+			}else {
+				right[j]=a[i];
+				j++;
+			}
+		}
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int a[]= {5,4,7,2,6,9,3,8,1,10};
-		int median=a.length/2;
-		int l[]=Arrays.copyOfRange(a, 0, median+1);
-		int r[]=Arrays.copyOfRange(a, median+1, a.length);
-		
-		mergesort(a, l, r);
-		sort(a,0,a.length);
-		
+		mergesort(a);
+		System.out.println();
+		for (int i = 0; i < a.length; i++) {
+			System.out.print(a[i]);
+		}
 		
 	}
 
